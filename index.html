@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="index, follow">
+    <title>htpasswd generator</title>
+    <link rel="stylesheet" href="css/pure-min.css">
+    <!--[if lte IE 8]>
+    <link rel="stylesheet" href="css/pure-grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/pure-grids-responsive-min.css">
+    <!--<![endif]-->
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<body id="app">
+<div class="header">
+    <div class="container">
+        <div class="inner-container">
+            <div class="pure-hidden-tablet pure-hidden-desktop">
+                <a href="#menu" id="menuLink" class="menu-link">
+                    <!-- Hamburger icon -->
+                    <span></span>
+                </a>
+            </div>
+            <div class="pure-g">
+                <div class="pure-u-1">
+                    <h1 class="brand-title"><a href=".">.htpw<span>gen</span></a></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="pure-g slider">
+    <div class="container">
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h2 class="brand-tagline">.HTPASSWD GENERATOR</h2>
+                <p>Erstell mit einem .htaccess Zugriffschutz schnell und einfach einen passwortgeschützten Bereich.</p>
+                <p>Gib den Namen, das Verzeichnis und die Logindaten ein, lade die generierten Dateien herunter und
+                    kopiere sie in das Verzeichnis deines Webservers. Fertig!</p>
+                <p style="margin-top:2em"><a href="#form" class="pure-button pure-button-primary button-large">Zum
+                    Formular</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container" v-cloak>
+    <div class="pure-g">
+        <div class="pure-u-1">
+
+            <div class="pure-form pure-form-stacked">
+                <h2 id="form">Formular</h2>
+
+                <fieldset>
+                    <legend>1. Gib den Namen des geschützten Bereichs und den Pfad zur Passwortdatei ein.</legend>
+                    <div class="pure-g">
+                        <div class="pure-u-1">
+                            <label for="authName">Name des geschützten Bereichs</label>
+                            <input class="pure-u-1 pure-u-md-2-3" id="authName" v-model="authName"
+                                   placeholder="Mein geschützter Bereich" lazy>
+                        </div>
+                        <div class="pure-u-1">
+                            <label for="authUserFile">Pfad zur Passwortdatei</label>
+                            <input class="pure-u-1 pure-u-md-2-3" id="authUserFile" v-model="authUserFile"
+                                   placeholder="/htdocs/.htpasswd" lazy>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>2. Gib die gewünschten Logindaten ein. Du kannst mehrere Benutzernamen und Passwörter
+                        erfassen.
+                    </legend>
+                    <div class="pure-g" v-for="(index, login) in logins">
+                        <div class="pure-u-1 pure-u-md-1-3">
+                            <label v-if="index < 1" for="username-{{index}}">Benutzername</label>
+                        </div>
+                        <div class="pure-u-1 pure-u-md-1-3">
+                            <label v-if="index < 1" for="password-{{index}}">Passwort</label>
+                        </div>
+                        <div class="pure-u-1 pure-u-md-1-3">
+                        </div>
+                        <div class="pure-u-1 pure-u-md-1-3">
+                            <input class="pure-u-1" id="username-{{index}}" type="text" v-model="login.username"
+                                   placeholder="Hans">
+                        </div>
+                        <div class="pure-u-1 pure-u-md-1-3">
+                            <input class="pure-u-1" id="password-{{index}}" type="text" v-model="login.password"
+                                   placeholder="*****">
+                        </div>
+                        <div class="pure-u-1 pure-u-md-1-3 buttons">
+                            <button class="pure-button" @click="addLogin">hinzufügen</button>
+                            <button class="pure-button" v-if="index > 0" @click="removeLogin(login)">entfernen</button>
+                        </div>
+                    </div>
+                </fieldset>
+
+            </div>
+
+            <div v-if="errors.length > 0" class="errors">
+                <p>Das Formular konnte nicht abgesendet werden:</p>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </div>
+
+            <div>
+                <button class="pure-button pure-button-primary button-large" @click="createFiles">Dateien erstellen
+                </button>
+            </div>
+
+            <div v-if="filesCreated">
+
+                <h2>Ausgabe</h2>
+
+                <h4>.htaccess</h4>
+                <pre>{{ htaccess }}</pre>
+
+                <h4>.htpasswd</h4>
+                <pre>{{ htpasswd }}</pre>
+
+                <button class="pure-button pure-button-primary button-large" @click="resetForm">Formular zurücksetzen
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="pure-g">
+            <div class="pure-u-1">
+                <h3>.htaccess</h3>
+
+                <p>Die <i>.htaccess</i>-Datei ist die Konfigurationsdatei und legt die Art des Zugriffsschutzes sowie
+                    den Namen der Passwortdatei fest.</p>
+
+                <h4>AuthName</h4>
+                <p>Der Name oder eine kurze Beschreibung des geschützten Web-Bereichs. Diese wird dem Anwender
+                    angezeigt, bevor Benutzername und Passwort abgefragt werden.</p>
+
+                <h4>AuthType</h4>
+                <p>Der Authorisierungstyp. Üblicherweise ist <i>Basic</i> der verwendete Authorisierungstyp. Andere
+                    mögliche Typen sind zum Beispiel PGP oder Kerberos. Der Basic Authorisierungstyp benutzt als
+                    Passwortdatei eine zusätzliche Textdatei.</p>
+
+                <h4>AuthUserFile</h4>
+                <p><b>TO DO</b>. Dateibezeichnung der Paßwortdatei (siehe unten .htpasswd).<br>
+                    Speziell der NCSA Server (und auch Netscape) versteht an dieser Stelle nur einen vollständigen Unix
+                    Pfadnamen. Der vollständige Unix Dateiname unterscheidet sich im Allgemeinen von dem in einer URL
+                    angegebenen Dateinamen. So gehört beispielsweise zu der URL<br>
+                    http://www.bingo-ev.de/verein/intern/index.htm die Unix Datei<br>
+                    /home/projekte/www/htdocs/verein/intern/index.htm. Den rot gekennzeichneten Anteil bezeichnet man
+                    als Document-Root. Die Document-Root ist nicht privilegierten Benutzern meistens nicht bekannt und
+                    kann von ihnen auch nicht ermittelt werden. Hier hilft nur eine Mail an den Webmaster des Providers.<br>
+                    <br>
+                    Der Apache Server versteht an dieser Stelle auch Dateinamen relativ zur Document-Root. Relative
+                    Dateinamen sind dadurch gekennzeichnet, daß sie nicht mit einem Schrägstrich "/" beginnen. Für den
+                    von bingo eingesetzten Apache Server sind also folgende beiden Zeilen gleichwertig :<br>
+                    <br>
+                    AuthUserFile /home/projekte/www/htdocs/verein/intern/.htpasswd<br>
+                    AuthUserFile verein/intern/.htpasswd</p>
+
+                <h3>.htpasswd</h3>
+
+                <p><b>TO DO</b>. Die Datei .htpasswd ist die eigentliche Paßwortdatei. Sie kann z.B. so aussehen :<br>
+                    uwe:32/a7xZJFbDoo<br>
+                    otto:7dWdiLtedT8hA<br>
+                    Jede Zeile in der Datei definiert eine Benutzername/Passwort-Kombination. Es wird zuerst der
+                    Benutzername angegeben, gefolgt von einem Doppelpunkt. Dahinter steht das mit der Unix-Funktion
+                    crypt() verschlüsselte Passwort.
+                    Zur Erzeugung einer solchen Zeile habe ich ein kleines CGI-Programm bereitgestellt (gilt nicht für
+                    den Sambar-Server, da der eine andere Verschlüsselungsroutine benutzt).
+                    Bitte achten Sie darauf, daß in den Zeilen keine zusätzlichen Leerzeichen enthalten sind !
+                    Die Datei .htpasswd sollte nach Möglichkeit gegen Ausspähung über http geschützt werden. Am besten
+                    legen Sie die Datei in einem Verzeichnis ab, das nicht unterhalb der Document-Root liegt. Diese
+                    Möglichkeit besteht aber bei den meisten Providern nicht. In diesem Fall legen Sie ein eigenes
+                    Verzeichnis für die Paßwortdatei(en) an und schützen dieses Verzeichnis wiederum mit Paßwort
+                    (require user eigener-user).</p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="footer" v-cloak>
+    <div class="container">
+        <div class="pure-g">
+            <div class="pure-u-1 pure-u-md-1-4 footer-about">
+                <h3>Über .htpwgen</h3>
+                <p>.htpwgen ist eine kleine Beispielapplikation mit den eingesetzten Frameworks und Werkzeugen Pure.css, Vue.js und Herbie CMS.</p>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-4">
+            </div>
+            <div class="pure-u-1 pure-u-md-1-4 footer-links">
+            </div>
+            <div class="pure-u-1 pure-u-md-1-4">
+                <h3>Erstellt mit</h3>
+                <ul>
+                    <li><a target="_blank" href="http://purecss.io">Pure.css</a></li>
+                    <li><a target="_blank" href="http://vuejs.org">Vue.js</a></li>
+                    <li><a target="_blank" href="https://www.getherbie.org">Herbie CMS</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr>
+        <div class="pure-g">
+            <div class="pure-u-1 footer-copyright">
+                &copy; 2016 von <a href="http://www.tebe.ch">Thomas Breuss</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/vue.js"></script>
+<script src="js/vue-resource.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
