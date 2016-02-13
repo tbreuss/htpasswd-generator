@@ -2,16 +2,20 @@ Vue.config.debug = true;
 //Vue.http.options.emulateHTTP = true;
 //Vue.http.options.emulateJSON = true;
 
-new Vue({
-    el: '#app',
-    data: {
-        authName: '',
-        authUserFile: '',
-        logins: [{username: "", password: ""}],
-        htaccess: '',
-        htpasswd: '',
-        filesCreated: false,
-        errors: []
+
+// The generator component.
+var generator = Vue.extend({
+    template: '#generator',
+    data: function () {
+        return {
+            authName: '',
+            authUserFile: '',
+            logins: [{username: "", password: ""}],
+            htaccess: '',
+            htpasswd: '',
+            filesCreated: false,
+            errors: []
+        }
     },
     methods: {
         resetForm: function() {
@@ -70,4 +74,35 @@ new Vue({
     },
     computed: {
     }
-});
+})
+
+// Create a router instance.
+var router = new VueRouter()
+
+// Define some routes.
+router.map({
+    '/generator': {
+        component: generator
+    },
+    '/impressum': {
+        component: {
+            template: '#impressum'
+        }
+    },
+    '/infos': {
+        component: {
+            template: '#infos'
+        }
+    },
+    '/': {
+        component: {
+            template: '#home'
+        }
+    }
+})
+
+// The router needs a root component to render.
+var app = Vue.extend({})
+
+// Now we can start the app!
+router.start(app, '#app')
