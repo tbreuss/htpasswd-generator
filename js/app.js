@@ -55,10 +55,11 @@ var generator = Vue.extend({
                 return;
             }
 
-            var data = {};
-            data.authName = this.authName;
-            data.authUserFile = this.authUserFile;
-            data.logins = {};
+            var data = {
+              authName: this.authName,
+              authUserFile: this.authUserFile,
+              logins: {}
+            };
             for (var i=0; i<this.logins.length; i++) {
                 data.logins[i] = {username: this.logins[i].username, password: this.logins[i].password };
             }
@@ -70,6 +71,16 @@ var generator = Vue.extend({
             }, function (response) {
                 alert('Konnte nicht mit Server verbinden.')
             });
+        },
+        downloadFiles: function() {
+          var data = {};
+          this.$http.get('api.php?q=download', data).then(function (response) {
+            // see: http://www.fizerkhan.com/blog/posts/Download-a-file-without-server-request.html
+            var dataURL = 'data:application/octet-stream;base64,' + encodeURIComponent(response.data);
+            window.location = dataURL;
+          }, function (response) {
+            alert('Konnte nicht mit Server verbinden.')
+          });
         }
     },
     computed: {
@@ -82,22 +93,37 @@ var router = new VueRouter()
 // Define some routes.
 router.map({
     '/generator': {
-        component: generator
+        component: generator,
+        title: 'Generator',
+        class: 'default'
     },
     '/impressum': {
         component: {
             template: '#impressum'
-        }
+        },
+        title: 'Impressum',
+        class: 'default'
     },
     '/infos': {
         component: {
             template: '#infos'
-        }
+        },
+        title: 'Infos',
+        class: 'default'
     },
     '/': {
         component: {
             template: '#home'
-        }
+        },
+        title: 'Home',
+        class: 'home'
+    },
+    '*': {
+        component: {
+            template: '#fehler'
+        },
+        title: 'Fehler - Seite nicht gefunden',
+        class: 'default'
     }
 })
 

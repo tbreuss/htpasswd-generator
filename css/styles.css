@@ -71,6 +71,9 @@ table {
 .header .pure-menu-selected a {
     background-color:#eee;
 }
+body.default .header {
+    background-color:#757994;
+}
 
 .pure-form fieldset {
     margin-bottom:1em;
@@ -94,6 +97,10 @@ table {
     color:#313447;
     text-decoration: none;
 }
+body.default .brand-title a {
+    color:#ffffff;
+}
+
 .brand-tagline {
     color:#ffffff;
     font-size:2em;
@@ -110,7 +117,7 @@ table {
 
 /* Footer */
 .footer {
-    background-color:#2D3138;
+    background-color:#313447;
     margin-top:75px;
     font-size:0.8em;
     color:rgba(255, 255, 255, 0.7);
@@ -275,9 +282,9 @@ span.e {
 .slider {
     background:#ff6f69;
     background:#e86e54;
-    background:#757994;
     background:#4dbc84;
     background:#e8548f;
+    background:#757994;
     padding:3em 0 2em 0;
 }
 .slider h2 {
