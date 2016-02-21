@@ -84,6 +84,9 @@ var generator = Vue.extend({
         }
     },
     computed: {
+        hasErrors: function() {
+            return this.errors.length > 0;
+        }
     }
 })
 

@@ -1,7 +1,7 @@
 body {
     background:#fff;
     color:#313447;
-    font-size:1.125em;
+    font-size:1.25em;
     margin:0;
     padding:0;
     -webkit-font-smoothing: antialiased;
@@ -16,6 +16,7 @@ html, button, input, select, textarea,
 /* Typo */
 a {
     text-decoration:underline;
+    color:#0078e7;
 }
 h1 {
     font-size:2em;
@@ -23,13 +24,14 @@ h1 {
     margin-top:0;
 }
 h2 {
-    font-size: 2.2em;
-    margin: 1em 0 1.2em 0;
+    font-size: 2em;
+    margin: 1.8em 0 1.2em 0;
     font-weight:lighter;
 }
 h3 {
     font-size: 1.6em;
     font-weight:lighter;
+    margin-top:1.7em;
 }
 h4 {
     font-size: 1em;
@@ -44,24 +46,49 @@ p {
 p + ul {
     margin-top:-0.5em;
 }
-
 table {
     margin-bottom:2.6em;
     font-size:0.88em;
 }
+pre {
+    padding:1.4em;
+    margin:1.4em 0;
+    background-color:#E6E6E6;
+}
 
 /* Container */
 .container {
-    max-width:1170px;
+    /*max-width:1170px;*/
+    max-width:980px;
     margin:0 auto;
     padding:0 20px;
 }
 
 /* Header */
-.header {}
+.pure-menu {
+    border-bottom: 1px solid #E3E0D8;
+    padding-top:2.7em;
+    padding-bottom:2.7em;
+}
+.pure-menu-heading {
+    font-size:1.2em;
+    padding: 0;
+    font-weight: bold;
+}
+.pure-menu-heading span {
+    font-weight: normal;
+}
+
+.header {
+}
+.header .container {
+}
 .header .inner-container {
     padding-top:35px;
     padding-bottom:23px;
+}
+.header .pure-menu-list {
+    float: right;
 }
 .header .pure-menu li {
     font-size:0.9em;
@@ -72,7 +99,7 @@ table {
     background-color:#eee;
 }
 body.default .header {
-    background-color:#757994;
+    /*background-color:#757994;*/
 }
 
 .pure-form fieldset {
@@ -80,35 +107,6 @@ body.default .header {
 }
 .pure-form legend {
     margin-bottom:0.75em;
-}
-
-/* Brand */
-.brand-title {
-    font-weight:bold;
-    text-transform:uppercase;
-    margin:0;
-    padding:0;
-}
-.brand-title span {
-    font-weight:normal;
-}
-
-.brand-title a {
-    color:#313447;
-    text-decoration: none;
-}
-body.default .brand-title a {
-    color:#ffffff;
-}
-
-.brand-tagline {
-    color:#ffffff;
-    font-size:2em;
-    font-weight: 300;
-    margin:0;
-    line-height:1.4em;
-    max-width:970px;
-    text-align:center;
 }
 
 .buttons {
@@ -142,12 +140,12 @@ body.default .brand-title a {
     color:#ffffff;
 }
 .footer p {
-    padding-right:1em;
+    padding-right:5em;
 }
 .footer hr {
     margin-top:5em;
     margin-bottom:3em;
-    background-color:#ccc;
+    background-color:#999;
     border:none;
     height:1px;
 }
@@ -166,6 +164,16 @@ body.default .brand-title a {
 }
 
 /* Pure */
+.pure-menu-active>.pure-menu-link, .pure-menu-link:hover, .pure-menu-link:focus {
+    background:none;
+}
+/*.pure-menu-link {
+    color:#ffffff;
+}*/
+.pure-menu-link {
+    color:#313447;
+}
+
 a.pure-button-primary {
     background:#313447;
 }
@@ -283,17 +291,21 @@ span.e {
     background:#ff6f69;
     background:#e86e54;
     background:#4dbc84;
-    background:#e8548f;
     background:#757994;
-    padding:3em 0 2em 0;
+    background:#e8548f;
+    padding:3em 0 3em 0;
+    margin-top:-1px;
 }
 .slider h2 {
+    color:white;
+    text-align:center;
+    margin:1em 0 0 0;
 }
 .slider p {
+    font-size:1.2em;
     color:white;
     -webkit-font-smoothing: antialiased;
     margin: 1em auto;
-    width:32em;
     text-align:center;
 }
 
@@ -343,10 +355,6 @@ span.e {
         padding-top:60px;
         display:none;
     }
-    .brand-tagline {
-        font-size:1.1em;
-        margin:1.5em auto 1.8em auto;
-    }
     .content-container {
         margin-top:2em;
     }
@@ -365,30 +373,25 @@ span.e {
         padding-left:0;
         margin-left:0.5em;
     }
+    .slider {
+        padding-top:1em;
+        padding-bottom:1em;
+    }
 }
 
 @media (max-width:480px) {
     body {
         font-size:1em !important;
     }
-    h1, h2.post-title {
-        font-size:1.4em;
-    }
     .container {
         padding:0 10px;
-    }
-    .header .inner-container {
-        padding-top:15px;
-        padding-bottom:13px;
     }
     pre {
         padding:10px;
     }
-    .pagination span {
-        display:none;
-    }
-    .pagination .pure-button i.fa {
-        padding:0;
+    .slider {
+        padding-top:1em;
+        padding-bottom:1em;
     }
 }
 
