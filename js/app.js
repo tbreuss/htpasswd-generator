@@ -7,6 +7,7 @@ Vue.config.debug = true;
 var generator = Vue.extend({
     template: '#generator',
     data: function () {
+        document.title = "Generator // HTPASSWD-Generator";
         return {
             authName: '',
             authUserFile: '',
@@ -96,37 +97,39 @@ var router = new VueRouter()
 // Define some routes.
 router.map({
     '/generator': {
-        component: generator,
-        title: 'Generator',
-        class: 'default'
+        component: generator
     },
     '/impressum': {
         component: {
-            template: '#impressum'
-        },
-        title: 'Impressum',
-        class: 'default'
+            template: '#impressum',
+            data: function() {
+                document.title = "Impressum // HTPASSWD-Generator";
+            }
+        }
     },
     '/infos': {
         component: {
-            template: '#infos'
-        },
-        title: 'Infos',
-        class: 'default'
+            template: '#infos',
+            data: function() {
+                document.title = "Infos // HTPASSWD-Generator";
+            }
+        }
     },
     '/': {
         component: {
-            template: '#home'
-        },
-        title: 'Home',
-        class: 'home'
+            template: '#home',
+            data: function() {
+                document.title = "HTPASSWD-Generator";
+            }
+        }
     },
     '*': {
         component: {
-            template: '#fehler'
-        },
-        title: 'Fehler - Seite nicht gefunden',
-        class: 'default'
+            template: '#fehler',
+            data: function() {
+                document.title = "Seite nicht gefunden // HTPASSWD-Generator";
+            }
+        }
     }
 })
 
