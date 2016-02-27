@@ -286,6 +286,10 @@ span.e {
     background-color:#4d5158;
 }
 
+.l-box {
+    padding: 0 1em 0 1em;
+}
+
 
 .slider {
     background:#ff6f69;
@@ -295,6 +299,7 @@ span.e {
     background:#e8548f;
     padding:3em 0 3em 0;
     margin-top:-1px;
+    margin-bottom: 3em;
 }
 .slider h2 {
     color:white;
@@ -364,14 +369,6 @@ span.e {
     .header .inner-container {
         padding-top:25px;
         padding-bottom:23px;
-    }
-    .box div {
-        margin-right:0;
-        margin-left:0;
-    }
-    .boxx {
-        padding-left:0;
-        margin-left:0.5em;
     }
     .slider {
         padding-top:1em;

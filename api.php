@@ -29,6 +29,25 @@ switch($type) {
 
         break;
 
+    case 'counter':
+        echo json_encode(2838);
+        break;
+
+    case 'news':
+
+        $news = [
+            ['title' => 'News Nummer 10', 'teaser' => 'Lorem Ipsum Dolor Sit Amet'],
+            ['title' => 'News Nummer 11', 'teaser' => 'Lorem Ipsum Dolor Sit Amet'],
+            ['title' => 'News Nummer 12', 'teaser' => 'Lorem Ipsum Dolor Sit Amet'],
+            ['title' => 'News Nummer 13', 'teaser' => 'Lorem Ipsum Dolor Sit Amet'],
+            ['title' => 'News Nummer 14', 'teaser' => 'Lorem Ipsum Dolor Sit Amet'],
+            ['title' => 'News Nummer 15', 'teaser' => 'Lorem Ipsum Dolor Sit Amet'],
+        ];
+
+        echo json_encode(array_slice($news, 0, (int)$_GET['limit']));
+
+        break;
+
     case 'download':
 
           $file = 'test.zip';
