@@ -27,10 +27,37 @@ switch($type) {
             'htpasswd' => $htpasswd
         ]);
 
+        // Open the file for reading
+        $fp = fopen("data/counterlog.txt", "r");
+
+        // Get the existing count
+        $count = fread($fp, 1024);
+
+        // Close the file
+        fclose($fp);
+
+        // Add 1 to the existing count
+        $count = $count + 1;
+
+        // Reopen the file and erase the contents
+        $fp = fopen("data/counterlog.txt", "w");
+
+        // Write the new count to the file
+        fwrite($fp, $count);
+
+        // Close the file
+        fclose($fp);
+
+
         break;
 
     case 'counter':
-        echo json_encode(2838);
+
+        $fp = fopen("data/counterlog.txt", "r");
+        $count = fread($fp, 1024);
+        fclose($fp);
+
+        echo json_encode(number_format($count, 0, '.', "'"));
         break;
 
     case 'news':

@@ -17,10 +17,8 @@
     export default{
         data(){
             document.title = "Fehler // HTPASSWD-Generator";
-            return{
-            }
+            return {}
         },
-        components:{
-        }
+        components: {}
     }
 </script>

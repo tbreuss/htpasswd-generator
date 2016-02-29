@@ -110,20 +110,20 @@
             }
         },
         methods: {
-            resetForm: function() {
+            resetForm: function () {
                 this.authName = '';
                 this.authUserFile = '';
                 this.logins = [{username: "", password: ""}];
                 this.filesCreated = false;
                 document.getElementById("authName").focus();
             },
-            addLogin: function(){
-                this.logins.push({username:"",password:""});
+            addLogin: function () {
+                this.logins.push({username: "", password: ""});
             },
-            removeLogin: function(login){
+            removeLogin: function (login) {
                 this.logins.$remove(login);
             },
-            validateForm: function() {
+            validateForm: function () {
                 var errors = [];
                 if (this.authName.trim() == "") {
                     errors.push('Der Name des geschützten Bereichs ist leer');
@@ -131,14 +131,14 @@
                 if (this.authUserFile.trim() == "") {
                     errors.push('Der Pfad zur Passwortdatei ist leer');
                 }
-                for (var i=0; i<this.logins.length; i++) {
+                for (var i = 0; i < this.logins.length; i++) {
                     if (!this.logins[i].username.trim() || !this.logins[i].password.trim()) {
-                        errors.push('Der Benutzername oder das Passwort in Zeile ' + (i+1) + ' ist leer');
+                        errors.push('Der Benutzername oder das Passwort in Zeile ' + (i + 1) + ' ist leer');
                     }
                 }
                 return errors;
             },
-            createFiles: function() {
+            createFiles: function () {
 
                 this.errors = this.validateForm();
                 if (this.errors.length > 0) {
@@ -152,8 +152,8 @@
                     authUserFile: this.authUserFile,
                     logins: {}
                 };
-                for (var i=0; i<this.logins.length; i++) {
-                    data.logins[i] = {username: this.logins[i].username, password: this.logins[i].password };
+                for (var i = 0; i < this.logins.length; i++) {
+                    data.logins[i] = {username: this.logins[i].username, password: this.logins[i].password};
                 }
 
                 this.$http.post('api.php?q=create', data).then(function (response) {
@@ -164,7 +164,7 @@
                     alert('Konnte nicht mit Server verbinden.')
                 });
             },
-            downloadFiles: function() {
+            downloadFiles: function () {
                 var data = {};
                 this.$http.get('api.php?q=download', data).then(function (response) {
                     // see: http://www.fizerkhan.com/blog/posts/Download-a-file-without-server-request.html
@@ -176,7 +176,7 @@
             }
         },
         computed: {
-            hasErrors: function() {
+            hasErrors: function () {
                 return this.errors.length > 0;
             }
         }
