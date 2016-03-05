@@ -18,7 +18,7 @@ switch($type) {
             $htpasswd .= sprintf(
                 "%s:%s\n",
                 $login['username'],
-                crypt($login['passwort'])
+                crypt($login['passwort'], base64_encode($login['passwort']))
             );
         }
 
