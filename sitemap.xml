@@ -1,18 +1,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-        <loc>http://htpwgen.tebe.ch</loc>
+        <loc>https://htpwgen.tebe.ch</loc>
         <lastmod>2016-02-21T13:07:54+01:00</lastmod>
     </url>
     <url>
-        <loc>http://htpwgen.tebe.ch/#!/generator</loc>
+        <loc>https://htpwgen.tebe.ch/#!/generator</loc>
         <lastmod>2016-02-21T13:07:54+01:00</lastmod>
     </url>
     <url>
-        <loc>http://htpwgen.tebe.ch/#!/infos</loc>
+        <loc>https://htpwgen.tebe.ch/#!/infos</loc>
         <lastmod>2016-02-21T13:07:54+01:00</lastmod>
     </url>
     <url>
-        <loc>http://htpwgen.tebe.ch/#!/impressum</loc>
+        <loc>https://htpwgen.tebe.ch/#!/impressum</loc>
         <lastmod>2016-02-21T13:07:54+01:00</lastmod>
     </url>
 </urlset>

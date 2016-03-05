@@ -1,1 +1,1 @@
-Sitemap: http://htpwgen.tebe.ch/sitemap.xml
+Sitemap: https://htpwgen.tebe.ch/sitemap.xml
