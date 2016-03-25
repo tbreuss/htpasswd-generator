@@ -1,6 +1,8 @@
-# htpwgen_dev
+# HTPASSWD Generator
 
-> A Vue.js project
+HTPASSWD Generator is a simple demo project using Vue.js and Pure.css. The aim of this project is to lern Vue.js and play around with its features. So, the project itself is quite senseless.
+
+![Screenshot](static/img/screenshot.png)
 
 ## Build Setup
 
