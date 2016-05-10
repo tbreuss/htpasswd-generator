@@ -18,3 +18,8 @@ npm run build
 ```
 
 For more information see the [docs for vueify](https://github.com/vuejs/vueify).
+
+
+## Vue.js Template
+
+https://github.com/vuejs-templates/browserify
