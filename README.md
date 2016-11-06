@@ -1,25 +1,22 @@
 # HTPASSWD Generator
 
-HTPASSWD Generator is a simple demo project using Vue.js and Pure.css. The aim of this project is to lern Vue.js and play around with its features. So, the project itself is quite senseless.
+HTPASSWD Generator is a simple demo project in German using Vue.js and Pure.css. The aim of this project 
+is to lern Vue.js and play around with its features.
 
 ![Screenshot](static/img/screenshot.png)
 
-## Build Setup
+## Install
 
-``` bash
-# install dependencies
-npm install
+To get this project working simply clone the repository:
 
-# serve with hot reload at localhost:8080
-npm run dev
+    git clone https://github.com/tbreuss/htpwgen.git
 
-# build for production with minification
-npm run build
-```
+Please note, that the very tiny backend in this project is served by PHP. You might change your local 
+settings to get this running.    
 
-For more information see the [docs for vueify](https://github.com/vuejs/vueify).
+## Info 
 
+This project is based on Vue's simple Browserify template. For more information on this follow the 
+documentation at:
 
-## Vue.js Template
-
-https://github.com/vuejs-templates/browserify
+<https://github.com/vuejs-templates/browserify-simple>
