@@ -3,10 +3,10 @@
         <div class="header">
             <div class="container">
                 <div class="pure-menu pure-menu-horizontal">
-                    <a v-link="'/'" class="pure-menu-heading pure-menu-link">.htpw<span>gen</span></a>
+                    <router-link to="/" class="pure-menu-heading pure-menu-link">.htpw<span>gen</span></router-link>
                     <ul class="pure-menu-list">
-                        <li class="pure-menu-item"><a class="pure-menu-link" v-link="'/generator'">Generator</a></li>
-                        <li class="pure-menu-item"><a class="pure-menu-link" v-link="'/infos'">Infos</a></li>
+                        <li class="pure-menu-item"><router-link to="/generator" class="pure-menu-link">Generator</router-link></li>
+                        <li class="pure-menu-item"><router-link to="/infos" class="pure-menu-link">Infos</router-link></li>
                     </ul>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                     <div class="pure-u-1 pure-u-md-1-4 footer-links">
                         <h3>Links</h3>
                         <ul>
-                            <li><a v-link="'/impressum'">Impressum</a></li>
+                            <li><router-link to="/impressum">Impressum</router-link></li>
                             <li><a target="_blank" href="http://www.tebe.ch">Über den Autor</a></li>
                         </ul>
                     </div>

@@ -1,1 +1,0 @@
-console.error("ReferenceError: Unknown plugin \"transform-runtime\" specified in \"/web/www/ch.tebe.htpwgen/.babelrc\" at 0, attempted to resolve relative to \"/web/www/ch.tebe.htpwgen\" while parsing file: /web/www/ch.tebe.htpwgen/src/main.js");
