@@ -11,8 +11,18 @@ To get this project working simply clone the repository:
 
     git clone https://github.com/tbreuss/htpwgen.git
 
-Please note, that the very tiny backend in this project is served by PHP. You might change your local 
-settings to get this running.    
+Please note, that the very tiny backend of this project is served by PHP.
+
+You might change your local settings to get a running development environment.
+
+## Run
+
+To run the application use the internal PHP server:
+
+    cd htpwgen
+    php -S localhost:8080
+    
+Open your webbrowser <http://localhost:8080>  
 
 ## Info 
 
