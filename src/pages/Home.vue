@@ -8,9 +8,8 @@
                         <p>Erstelle mit einem .htaccess Zugriffschutz schnell und einfach einen passwortgeschützten
                             Bereich. Gib den Namen, das Verzeichnis und die Logindaten ein, lade die generierten Dateien
                             herunter und kopiere sie in das Verzeichnis deines Webservers. Fertig!</p>
-                        <p style="margin-top:2em"><a href="#generator"
-                                                     class="pure-button pure-button-primary button-large">
-                            Zum HTPASSWD-Generator</a></p>
+                        <p style="margin-top:2em"><router-link to="/generator" class="pure-button pure-button-primary button-large">
+                            Zum HTPASSWD-Generator</router-link></p>
                     </div>
                 </div>
             </div>

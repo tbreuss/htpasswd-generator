@@ -35,7 +35,7 @@
                         <ul>
                             <li><a target="_blank" href="http://purecss.io">Pure.css</a></li>
                             <li><a target="_blank" href="http://vuejs.org">Vue.js</a></li>
-                            <li><a target="_blank" href="https://www.getherbie.org">Herbie CMS</a></li>
+                            <li><a target="_blank" href="https://herbie.tebe.ch">Herbie CMS</a></li>
                         </ul>
                     </div>
                 </div>
